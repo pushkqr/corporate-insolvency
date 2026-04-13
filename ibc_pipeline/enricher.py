@@ -23,6 +23,7 @@ except ImportError:  # pragma: no cover
 
 
 LOGGER = logging.getLogger("dataset_builder")
+SAFE_MODE_FRONTIER_RPM = 10
 
 
 @dataclass
@@ -124,6 +125,25 @@ def _create_completion(client: Any, endpoint: LLMEndpoint, prompt: str, payload:
     return client.chat.completions.create(**request_kwargs)
 
 
+def _maybe_wait_for_frontier_rate_limit(
+    endpoint: LLMEndpoint,
+    safe_mode: bool,
+    last_frontier_call_ts: float | None,
+) -> float | None:
+    if not safe_mode or endpoint.name != "frontier":
+        return last_frontier_call_ts
+
+    min_interval = 60.0 / SAFE_MODE_FRONTIER_RPM
+    if last_frontier_call_ts is not None:
+        elapsed = time.time() - last_frontier_call_ts
+        wait_for = min_interval - elapsed
+        if wait_for > 0:
+            LOGGER.info("Safe mode frontier throttle: waiting %.2fs to respect %d req/min", wait_for, SAFE_MODE_FRONTIER_RPM)
+            time.sleep(wait_for)
+
+    return time.time()
+
+
 def enrich_row_with_ai(client: Any, endpoint: LLMEndpoint, row: pd.Series, safe_mode: bool) -> dict[str, str]:
     prompt = _build_system_prompt()
 
@@ -191,8 +211,14 @@ def run_enrich_pipeline(
             df[col] = ""
 
     LOGGER.info("Starting enrichment run for %d rows", len(df))
+    last_frontier_call_ts: float | None = None
     for i, row in df.iterrows():
         try:
+            last_frontier_call_ts = _maybe_wait_for_frontier_rate_limit(
+                active_endpoint,
+                safe_mode=safe_mode,
+                last_frontier_call_ts=last_frontier_call_ts,
+            )
             enriched = enrich_row_with_ai(client, active_endpoint, row, safe_mode=safe_mode)
             df.at[i, "ibc_liquidation_risk"] = enriched["ibc_liquidation_risk"]
             df.at[i, "asset_illusion_rationale"] = enriched["asset_illusion_rationale"]
@@ -213,6 +239,11 @@ def run_enrich_pipeline(
 
             if switched:
                 try:
+                    last_frontier_call_ts = _maybe_wait_for_frontier_rate_limit(
+                        active_endpoint,
+                        safe_mode=safe_mode,
+                        last_frontier_call_ts=last_frontier_call_ts,
+                    )
                     enriched = enrich_row_with_ai(client, active_endpoint, row, safe_mode=safe_mode)
                     df.at[i, "ibc_liquidation_risk"] = enriched["ibc_liquidation_risk"]
                     df.at[i, "asset_illusion_rationale"] = enriched["asset_illusion_rationale"]

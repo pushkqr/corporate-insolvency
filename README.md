@@ -11,6 +11,7 @@ Compact pipeline to build an India-focused insolvency dataset.
 3. Uses endpoint failover in enrich mode:
    - Frontier first (`BASE_URL`, `MODEL_NAME`, `GOOGLE_API_KEY`)
    - Local fallback on error (`LOCAL_URL`, `LOCAL_MODEL_NAME`, `OPENAI_API_KEY`)
+4. In `--safe-mode`, frontier calls are throttled to 10 requests/minute before fallback logic applies.
 
 ## Requirements
 
@@ -40,6 +41,9 @@ Notes:
 
 - Keep `OPENAI_API_KEY` set for local fallback clients (Ollama accepts placeholder values).
 - Enrichment automatically switches to local endpoint if frontier calls fail.
+- `--safe-mode` does two things:
+  - Frontier: rate limits requests to 10/min.
+  - Local fallback: uses conservative generation settings (`max_tokens`, reduced local options) for stability.
 
 ## Seed CSV format
 
@@ -74,7 +78,7 @@ Extract + enrich:
 python build_dataset.py --mode all --output insolvency_dataset.csv --enriched-output insolvency_dataset_enriched.csv --seed-csv ibc_pipeline/seeds.csv --limit 100 --sleep-seconds 0.1
 ```
 
-Safer local inference mode (reduced generation pressure):
+Safe mode (frontier rate-limited + safer local fallback):
 
 ```powershell
 python build_dataset.py --mode enrich --input insolvency_dataset.csv --enriched-output insolvency_dataset_enriched.csv --safe-mode
