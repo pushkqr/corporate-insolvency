@@ -1,0 +1,62 @@
+"""Project constants."""
+
+from __future__ import annotations
+
+OUTPUT_COLUMNS = [
+    "ticker",
+    "company_name",
+    "sector",
+    "industry",
+    "business_summary",
+    "target",
+    "market_cap",
+    "total_debt",
+    "intangible_assets",
+    "cash_and_equivalents",
+    "current_liabilities",
+    "operating_cash_flow",
+    "ebitda",
+    "interest_expense",
+    "net_income",
+    "total_assets",
+    "fiscal_year",
+    "currency",
+    "source_url",
+    "extraction_status",
+    "extraction_error",
+]
+
+ENRICH_COLUMNS = [
+    "ibc_liquidation_risk",
+    "asset_illusion_rationale",
+    "enrichment_status",
+    "enrichment_error",
+]
+
+KNOWN_POSITIVE_TICKERS = {
+    "RCOM", "ALOKINDS", "JPASSOCIAT", "ABGSHIP", "JETAIRWAYS",
+    "FRETAIL", "VIDEOIND", "HDIL", "AMTEKAUTO", "LITL",
+    "ESIL", "BHUSHAN", "ELECTROSL", "MONNETISPA", "JAYPEE",
+    "AIRCEL", "ROLTA", "MTEDUCARE", "SJET", "GTLINFRA",
+    "FCONSUMER", "FLFL", "SINTEX", "HCC", "GAYAPROJ",
+    "ARSSINFRA", "ANSALAPI", "SEYAIND", "OMKARCHEM", "OPTOCIRCUI",
+    "CGPOWER", "COX&KINGS", "RNAVAL", "EDUCOMP", "GITANJALI",
+    "KWALITY", "DCHL", "BOMBAYRAYON", "PROVOGE", "MCLEODRUSS",
+    "TALWALKARS", "IL&FSTRANS", "KSK", "CASTEX", "METALFORGE",
+    "SHIRPUR-G", "ATLANTA", "GAMMONIND", "IVRCLINFRA", "GTL",
+    "EMCO", "JPINFRATEC", "ORCHIDPHAR", "BALLARPUR", "PUNJLLOYD",
+    "KFA", "MOSERBAER", "SADBHAV", "SIMPLEXINF", "PRATIBHA",
+    "CCCL", "SKUMARSYNF", "MANDHANA", "EROSMEDIA", "SABTN",
+    "STERLINBIO", "RICOHIND", "BGRENERGY", "TULIP", "CANDC",
+    "ERAENVIRO", "BURNPUR", "HANUNG", "NAKODA", "PLETHICO",
+    "SURYAPHRM", "PARSVNATH", "RELINFRA",
+    "BINANIIND", "JMTAUTO", "GAMMONINFRA", "MADHUCON", "SUPREMEINF",
+    "LEEL", "ZICOM", "KSS", "DQE", "ZYLOG",
+    "KOUTONS", "VICEROY", "IMAGICAA", "JBFIND", "EASTSILK",
+    "RAJRAYON", "SPYL", "VISASTEEL", "UJAAS", "AKSHOPTFBR",
+    "DBREALTY", "OMAXE", "NOIDATOLL", "IL&FSENGG", "BPL",
+    "MIRC", "CELESTIAL", "NATHBIOGEN", "ORTINLAB", "UNIPLY",
+    "PRAJAY", "GVKPIL", "PATELENG", "MARG", "ARCOTECH",
+    "MBLINFRA", "SEZAL", "SHARONBIO", "SURANASOL", "NITINFIRE",
+    "SHIRPUR-G", "RUCHISOYA"
+}

@@ -1,0 +1,33 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+
+# Environment and local secrets
+.env
+.env.*
+
+# Build/test tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Generated dataset outputs
+insolvency_dataset.csv
+insolvency_dataset_enriched.csv
+sanity_extract.csv
+sanity_enriched.csv
+yfin_context_extract.csv
+yfin_context_enriched.csv
+yfin_context_enriched_no_sector.csv
+yfin_context_enriched_failover_test.csv
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
