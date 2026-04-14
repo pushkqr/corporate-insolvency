@@ -19,6 +19,9 @@ venv/
 htmlcov/
 
 # Generated dataset outputs
+test.ipynb
+fallback.csv
+seeds.csv
 insolvency_dataset.csv
 insolvency_dataset_enriched.csv
 sanity_extract.csv

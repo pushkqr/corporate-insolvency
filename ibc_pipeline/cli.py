@@ -27,7 +27,12 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--seed-csv", default="", help="Optional seed CSV with columns: ticker,company_name")
     parser.add_argument("--sleep-seconds", type=float, default=2.0, help="Throttle duration between companies.")
-    parser.add_argument("--limit", type=int, default=10, help="Max number of rows in the current mode run.")
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="Optional max number of rows in the current mode run. If omitted, process all rows.",
+    )
     parser.add_argument(
         "--safe-mode",
         action="store_true",
