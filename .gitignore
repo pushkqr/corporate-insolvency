@@ -22,6 +22,7 @@ htmlcov/
 test.ipynb
 fallback.csv
 seeds.csv
+backup.csv
 insolvency_dataset.csv
 insolvency_dataset_enriched.csv
 sanity_extract.csv
