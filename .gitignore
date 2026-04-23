@@ -19,6 +19,7 @@ venv/
 htmlcov/
 
 # Generated dataset outputs
+.ignore/
 test.ipynb
 fallback.csv
 seeds.csv
