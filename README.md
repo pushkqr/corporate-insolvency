@@ -1,69 +1,45 @@
-# IBC Dataset Builder + Insolvency Modeling Notebook
+# Corporate Insolvency Risk Modeling
 
-This repository contains two connected workflows:
+A data engineering pipeline and machine learning project designed to predict corporate bankruptcy in the Indian stock market. This project identifies distressed companies by analyzing forensic accounting indicators—such as inflated intangible assets and cash flow divergence—rather than relying solely on basic profitability metrics.
 
-1. Dataset construction and enrichment pipeline for India-focused insolvency data.
-2. End-to-end notebook analysis and modeling for insolvency risk screening.
+## Project Structure
 
-## Workflow A: Dataset Builder
+- **`build_dataset.py`**: An automated pipeline that extracts terminal-year financial data using `yfinance` and enriches it with qualitative risk flags using an LLM. Includes rate-limiting and local fallback logic.
+- **`code.ipynb`**: A complete Jupyter Notebook that cleans the data, engineers forensic features, evaluates predictive models (Logistic Regression vs. Random Forest), and uses clustering to categorize the different ways companies fail.
 
-The builder script:
+## Setup and Installation
 
-1. Extracts company fundamentals and business text from yfinance (NSE symbols via .NS).
-2. Enriches each row with:
-   - ibc_liquidation_risk (High/Medium/Low)
-   - asset_illusion_rationale (one sentence)
-3. Uses endpoint failover in enrich mode:
-   - Frontier first (BASE_URL, MODEL_NAME, GOOGLE_API_KEY)
-   - Local fallback on error (LOCAL_URL, LOCAL_MODEL_NAME, OPENAI_API_KEY)
-4. In --safe-mode, frontier calls are throttled to 10 requests/minute before fallback logic applies.
+1. Install the required dependencies:
 
-### Requirements
+   ```powershell
+   pip install -r requirements.txt
+   ```
 
-- Python 3.10+
-- pip install -r requirements.txt
+2. Create a `.env` file in the root directory to configure the LLM endpoints for data enrichment:
 
-### Environment
+   ```env
+   # Primary Endpoint (Google Gemini)
+   BASE_URL=[https://generativelanguage.googleapis.com/v1beta/openai/](https://generativelanguage.googleapis.com/v1beta/openai/)
+   MODEL_NAME=gemini-2.5-flash
+   GOOGLE_API_KEY=your_google_api_key_here
 
-Create a .env file:
+   # Fallback Endpoint (Local Ollama)
+   LOCAL_URL=http://localhost:11434/v1
+   LOCAL_MODEL_NAME=qwen2.5:3b
+   OPENAI_API_KEY=local_dummy_key
+   ```
 
-```env
-# Frontier endpoint (primary)
-BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
-MODEL_NAME=gemini-2.5-flash
-GOOGLE_API_KEY=your_google_api_key
+## Execution Guide
 
-# Local endpoint (fallback)
-LOCAL_URL=http://localhost:11434/v1
-LOCAL_MODEL_NAME=qwen2.5:3b
-OPENAI_API_KEY=local-placeholder-key
+### 1. Build the Dataset
 
-# Optional
-DEBUG=false
+Run the data pipeline to generate `insolvency_raw.csv`.
+
+Standard run:
+
+```powershell
+python build_dataset.py
 ```
-
-Notes:
-
-- Keep OPENAI_API_KEY set for local fallback clients (Ollama accepts placeholder values).
-- Enrichment automatically switches to local endpoint if frontier calls fail.
-- --safe-mode does two things:
-  - Frontier: rate limits requests to 10/min.
-  - Local fallback: uses conservative generation settings (max_tokens, reduced local options) for stability.
-
-### Seed CSV format
-
-Pass --seed-csv with columns:
-
-```csv
-ticker,company_name
-RELIANCE,Reliance Industries
-TCS,Tata Consultancy Services
-```
-
-- ticker is required.
-- company_name is optional.
-
-### Run dataset pipeline
 
 Extract only:
 
@@ -89,45 +65,12 @@ Safe mode (frontier rate-limited + safer local fallback):
 python build_dataset.py --mode enrich --input insolvency_dataset.csv --enriched-output insolvency_dataset_enriched.csv --safe-mode
 ```
 
-## Workflow B: Notebook Analysis and Modeling
+### 2. Run the Analysis
 
-The notebook code.ipynb now contains the complete modeling workflow since the last commit:
+Open `code.ipynb` in VS Code or Jupyter Notebook and run all cells sequentially from top to bottom. This process will:
 
-1. Data cleaning and imputation from insolvency_raw.csv.
-2. Export of cleaned analysis dataset to insolvency_clean.csv.
-3. Forensic feature engineering (including tangible asset coverage and cash-flow divergence features).
-4. EDA with class balance, missingness checks, scaled ratio distributions, pairwise relationships, and interaction panels.
-5. Model comparison:
-   - Logistic Regression baseline
-   - Random Forest non-linear model
-6. Train CV + holdout evaluation with PR-AUC, ROC-AUC, recall, precision, F1, and balanced accuracy.
-7. Business-threshold tuning to prioritize high bankrupt-recall screening.
-8. Side-by-side confusion matrix comparison (default threshold vs business-tuned threshold).
-9. Bootstrap confidence intervals for holdout PR-AUC and tuned recall.
-
-### Run notebook workflow
-
-1. Ensure dependencies are installed:
-
-```powershell
-pip install -r requirements.txt
-```
-
-2. Open code.ipynb in VS Code or Jupyter.
-
-3. Run cells top-to-bottom so generated variables and outputs are available for later sections.
-
-### Notebook outputs
-
-- Input dataset: insolvency_raw.csv
-- Cleaned dataset artifact: insolvency_clean.csv
-- Visual outputs: EDA charts, pairplots, confusion matrices, precision-recall plots
-- Model outputs: CV summary, holdout summary, tuned threshold metrics, bootstrap CIs
-
-## Key files
-
-- build_dataset.py
-- code.ipynb
-- insolvency_raw.csv
-- insolvency_clean.csv
-- requirements.txt
+1. Output the cleaned dataset (`insolvency_clean.csv`).
+2. Generate Exploratory Data Analysis (EDA) charts.
+3. Train the predictive models and output performance metrics (PR-AUC, ROC-AUC, Recall).
+4. Apply business-logic thresholding for high-sensitivity screening.
+5. Generate K-Means/Agglomerative clustering visualizations for failure archetypes.
