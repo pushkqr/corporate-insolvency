@@ -1,6 +1,6 @@
 # Corporate Insolvency Risk Modeling
 
-A data engineering pipeline and machine learning project designed to predict corporate bankruptcy in the Indian stock market. This project identifies distressed companies by analyzing forensic accounting indicators—such as inflated intangible assets and cash flow divergence—rather than relying solely on basic profitability metrics.
+A data engineering pipeline and machine learning project designed to predict corporate bankruptcy in the Indian stock market. This project identifies distressed companies by analyzing forensic accounting indicators, such as inflated intangible assets and cash flow divergence, rather than relying solely on basic profitability metrics.
 
 ## Project Structure
 
