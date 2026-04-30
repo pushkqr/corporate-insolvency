@@ -26,13 +26,6 @@ OUTPUT_COLUMNS = [
     "extraction_error",
 ]
 
-ENRICH_COLUMNS = [
-    "ibc_liquidation_risk",
-    "asset_illusion_rationale",
-    "enrichment_status",
-    "enrichment_error",
-]
-
 KNOWN_POSITIVE_TICKERS = {
     "RCOM", "ALOKINDS", "JPASSOCIAT", "ABGSHIP", "JETAIRWAYS",
     "FRETAIL", "VIDEOIND", "HDIL", "AMTEKAUTO", "LITL",
