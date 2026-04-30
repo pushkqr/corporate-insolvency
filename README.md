@@ -41,6 +41,18 @@ Standard run:
 python build_dataset.py
 ```
 
+Bankrupt pipeline (PDF + Gemini):
+
+```powershell
+python build_dataset.py --pipeline bankrupt --output insolvency_dataset.csv --bankrupt-seed-csv ibc_pipeline/bankrupt_seeds.csv
+```
+
+Bankrupt PDF modules live in ibc_pipeline/pipeline.py with supporting helpers:
+
+- ibc_pipeline/pdf_fetcher.py
+- ibc_pipeline/pdf_extractor.py
+- ibc_pipeline/llm_extractor.py
+
 Extract only:
 
 ```powershell

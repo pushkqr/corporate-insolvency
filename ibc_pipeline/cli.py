@@ -6,12 +6,19 @@ import argparse
 from pathlib import Path
 
 from .config import configure_logging, load_environment
+from .pipeline import run_bankrupt_pipeline
 from .enricher import run_enrich_pipeline
 from .extractor import run_extract_pipeline
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build and enrich insolvency dataset.")
+    parser.add_argument(
+        "--pipeline",
+        choices=["listed", "bankrupt"],
+        default="listed",
+        help="Choose listed (yfinance) or bankrupt (PDF) pipeline.",
+    )
     parser.add_argument(
         "--mode",
         choices=["extract", "enrich", "all"],
@@ -26,6 +33,11 @@ def parse_args() -> argparse.Namespace:
         help="Output CSV path for enrich mode.",
     )
     parser.add_argument("--seed-csv", default="", help="Optional seed CSV with columns: ticker,company_name")
+    parser.add_argument(
+        "--bankrupt-seed-csv",
+        default="ibc_pipeline/bankrupt_seeds.csv",
+        help="Seed CSV for bankrupt pipeline with columns: ticker,company_name,year",
+    )
     parser.add_argument("--sleep-seconds", type=float, default=2.0, help="Throttle duration between companies.")
     parser.add_argument(
         "--limit",
@@ -45,6 +57,17 @@ def main() -> None:
     args = parse_args()
     configure_logging()
     load_environment()
+
+    if args.pipeline == "bankrupt":
+        seed_csv = Path(args.bankrupt_seed_csv)
+        output_csv = Path(args.output)
+        run_bankrupt_pipeline(
+            seed_csv=seed_csv,
+            output_csv=output_csv,
+            sleep_seconds=args.sleep_seconds,
+            limit=args.limit,
+        )
+        return
 
     if args.mode in {"extract", "all"}:
         output_csv = Path(args.output)
