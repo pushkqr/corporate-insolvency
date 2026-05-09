@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import re
 from typing import Iterable
 
@@ -24,6 +25,8 @@ PATTERNS = {
     },
 }
 
+LOGGER = logging.getLogger("dataset_builder")
+
 
 def get_number_density(text: str) -> float:
     if not text:
@@ -37,8 +40,15 @@ def find_page(doc: fitz.Document, regex: str, min_density: float) -> int | None:
         text = doc[page_num].get_text("text")
         if regex and text:
             if re.search(regex, text):
-                if get_number_density(text) > min_density:
+                density = get_number_density(text)
+                if density > min_density:
                     return page_num
+                LOGGER.debug(
+                    "Statement match below density threshold page=%d density=%.3f min=%.3f",
+                    page_num,
+                    density,
+                    min_density,
+                )
     return None
 
 
@@ -49,9 +59,10 @@ def _unique_sorted_pages(pages: Iterable[int], doc_len: int) -> list[int]:
 def extract_financial_cherrypick(
     pdf_path: str,
     output_path: str,
-    min_density: float = 0.12,
+    min_density: float = 0.05,
 ) -> tuple[bool, str, list[str], list[int]]:
     doc = fitz.open(pdf_path)
+    LOGGER.info("Cherrypick start pdf=%s pages=%d", pdf_path, len(doc))
 
     for mode in ["Consolidated", "Standalone"]:
         pages_to_keep: set[int] = set()
@@ -60,6 +71,13 @@ def extract_financial_cherrypick(
         bs_page = find_page(doc, PATTERNS[mode]["BS"], min_density)
         pl_page = find_page(doc, PATTERNS[mode]["PL"], min_density)
         cf_page = find_page(doc, PATTERNS[mode]["CF"], min_density)
+        LOGGER.info(
+            "Cherrypick scan mode=%s bs=%s pl=%s cf=%s",
+            mode,
+            bs_page,
+            pl_page,
+            cf_page,
+        )
 
         if bs_page is not None:
             pages_to_keep.update([bs_page, bs_page + 1])
@@ -76,7 +94,14 @@ def extract_financial_cherrypick(
             doc.select(valid_pages)
             doc.save(output_path)
             doc.close()
+            LOGGER.info(
+                "Cherrypick success mode=%s statements=%s pages=%s",
+                mode,
+                ",".join(statements_found),
+                valid_pages,
+            )
             return True, mode, statements_found, valid_pages
 
     doc.close()
+    LOGGER.warning("Cherrypick failed pdf=%s reason=no_statement_pages_matched", pdf_path)
     return False, "Not Found", [], []

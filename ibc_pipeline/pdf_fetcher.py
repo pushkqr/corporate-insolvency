@@ -83,14 +83,29 @@ class NSEDATAPipeline:
                 LOGGER.info("Annual report download failed ticker=%s status=%s", ticker, zip_resp.status_code)
                 return False, report_year, zip_url, f"zip_download_status:{zip_resp.status_code}"
 
-            with zipfile.ZipFile(io.BytesIO(zip_resp.content)) as archive:
-                pdf_name = next((name for name in archive.namelist() if name.lower().endswith(".pdf")), None)
-                if not pdf_name:
-                    LOGGER.info("Annual report zip missing PDF ticker=%s", ticker)
-                    return False, report_year, zip_url, "zip_missing_pdf"
-                pdf_bytes = archive.read(pdf_name)
+            content_type = (zip_resp.headers.get("Content-Type") or "").lower()
+            if zip_url.lower().endswith(".pdf") or "application/pdf" in content_type:
                 with save_path.open("wb") as handle:
-                    handle.write(pdf_bytes)
+                    handle.write(zip_resp.content)
+                LOGGER.info("Saved annual report PDF ticker=%s path=%s", ticker, save_path)
+                return True, report_year, zip_url, None
+
+            try:
+                with zipfile.ZipFile(io.BytesIO(zip_resp.content)) as archive:
+                    pdf_name = next((name for name in archive.namelist() if name.lower().endswith(".pdf")), None)
+                    if not pdf_name:
+                        LOGGER.info("Annual report zip missing PDF ticker=%s", ticker)
+                        return False, report_year, zip_url, "zip_missing_pdf"
+                    pdf_bytes = archive.read(pdf_name)
+                    with save_path.open("wb") as handle:
+                        handle.write(pdf_bytes)
+            except zipfile.BadZipFile:
+                if zip_resp.content.startswith(b"%PDF"):
+                    with save_path.open("wb") as handle:
+                        handle.write(zip_resp.content)
+                else:
+                    LOGGER.info("Annual report content is not zip/pdf ticker=%s", ticker)
+                    return False, report_year, zip_url, "zip_bad_format"
         except Exception as exc:
             LOGGER.info("Annual report download error ticker=%s error=%s", ticker, exc)
             return False, report_year, zip_url, f"zip_download:{exc}"

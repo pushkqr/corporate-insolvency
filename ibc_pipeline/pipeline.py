@@ -102,7 +102,7 @@ def run_bankrupt_pipeline(
     output_csv: Path,
     sleep_seconds: float,
     limit: int | None = None,
-    min_density: float = 0.12,
+    min_density: float = 0.05,
     model_name: str | None = None,
     system_prompt: str | None = None,
 ) -> None:

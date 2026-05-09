@@ -43,8 +43,8 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    configure_logging()
     load_environment()
+    configure_logging()
 
     if args.pipeline == "bankrupt":
         seed_csv = Path(args.bankrupt_seed_csv)
