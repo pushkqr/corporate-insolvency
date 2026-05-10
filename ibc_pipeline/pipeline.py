@@ -165,11 +165,40 @@ def run_bankrupt_pipeline(
             pages,
         )
 
-        result_json = extract_metrics_with_gemini(
-            pdf_path=str(dense_path),
-            system_prompt=system_prompt,
-            model_name=model_name,
-        )
+        result_json = ""
+        llm_failed = False
+        max_attempts = 3
+        for attempt in range(1, max_attempts + 1):
+            try:
+                result_json = extract_metrics_with_gemini(
+                    pdf_path=str(dense_path),
+                    system_prompt=system_prompt,
+                    model_name=model_name,
+                )
+                break
+            except Exception as exc:
+                LOGGER.warning(
+                    "LLM request failed ticker=%s year=%s attempt=%d/%d error=%s",
+                    company.ticker,
+                    row["fiscal_year"],
+                    attempt,
+                    max_attempts,
+                    exc,
+                )
+                if attempt == max_attempts:
+                    row["extraction_status"] = "llm_failed"
+                    row["extraction_error"] = ""
+                    append_row(output_csv, row)
+                    LOGGER.warning(
+                        "LLM retries exhausted ticker=%s year=%s",
+                        company.ticker,
+                        row["fiscal_year"],
+                    )
+                    time.sleep(sleep_seconds)
+                    llm_failed = True
+
+        if llm_failed:
+            continue
 
         if not result_json:
             row["extraction_status"] = "llm_empty_response"
