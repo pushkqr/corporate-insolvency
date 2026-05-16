@@ -5,7 +5,7 @@ A data engineering pipeline and machine learning project designed to predict cor
 ## Project Structure
 
 - **`build_dataset.py`**: An automated pipeline that extracts terminal-year financial data using `yfinance` (listed) or PDF parsing + LLM extraction (bankrupt).
-- **`code.ipynb`**: A complete Jupyter Notebook that cleans the data, engineers forensic features, evaluates predictive models (Logistic Regression vs. Random Forest), and uses clustering to categorize the different ways companies fail.
+- **`code.ipynb`**: A complete Jupyter Notebook that cleans the data, engineers forensic features, evaluates predictive models (Logistic Regression vs. XGBoost), and uses clustering to categorize the different ways companies fail.
 
 ## Setup and Installation
 
