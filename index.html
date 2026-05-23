@@ -173,15 +173,14 @@
         <section id="the-dataset" class="level2">
           <h2 class="anchored" data-anchor-id="the-dataset">The Dataset</h2>
           <p>
-            We are utilizing <code>insolvency_raw.csv</code>, a dataset
-            containing ~900 Indian listed companies. Crucially, the “bankrupt”
-            class (Target = 1) features a curated list of corporate insolvencies
-            gathered through standard financial platforms (such as Yahoo
-            Finance, Screener, Investing.com and Annual Reports). This data is
-            fortified by rigorous manual vetting of company annual reports from
-            the fiscal years immediately preceding their collapse, capturing
-            their financial state at the exact moment the terminal distress
-            became mathematically irreversible.
+            We are utilizing a dataset containing ~900 Indian listed companies.
+            Crucially, the “bankrupt” class (Target = 1) features a curated list
+            of corporate insolvencies gathered through standard financial
+            platforms (such as Yahoo Finance, Screener, Investing.com and Annual
+            Reports). This data is fortified by rigorous manual vetting of
+            company annual reports from the fiscal years immediately preceding
+            their collapse, capturing their financial state at the exact moment
+            the terminal distress became mathematically irreversible.
           </p>
           <p>
             The raw dataset is built using a dual-stream pipeline that
@@ -224,8 +223,8 @@
           </ul>
           <p>
             <strong>Schema Consolidation &amp; Merging</strong> The two streams
-            are mapped into a standardized format. Duplicate tickers—which often
-            occur when a company triggers multiple exchange warnings over
+            are mapped into a standardized format. Duplicate tickers, which
+            often occur when a company triggers multiple exchange warnings over
             several quarters are resolved by evaluating row completeness and
             temporal proximity to the actual collapse, keeping only the most
             accurate terminal year for the master file.
