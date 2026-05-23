@@ -10,6 +10,7 @@ venv/
 # Environment and local secrets
 .env
 .env.*
+*.tex
 
 # Build/test tooling caches
 .pytest_cache/

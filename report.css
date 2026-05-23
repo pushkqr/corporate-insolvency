@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;500;600;700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap");
+
+:root {
+  --bg: #f4f1ea;
+  --paper: #fffdf8;
+  --ink: #1f242a;
+  --muted: #5a6472;
+  --accent: #2b6f6a;
+  --accent-2: #a56a2f;
+  --rule: #e2d9cd;
+  --code-bg: #f2eee6;
+  --table-head: #efe8dd;
+  --table-row: #faf6f0;
+  --shadow: rgba(27, 34, 40, 0.12);
+}
+
+body {
+  font-family: "Spectral", serif;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(43, 111, 106, 0.08),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(165, 106, 47, 0.08),
+      transparent 45%
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(244, 241, 234, 0.2));
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+main.content {
+  max-width: 920px;
+  margin: 2.5rem auto 3.5rem auto;
+  padding: 2.5rem 2.5rem 3rem 2.5rem;
+  background: var(--paper);
+  border-radius: 18px;
+  box-shadow: 0 24px 60px var(--shadow);
+  border: 1px solid rgba(226, 217, 205, 0.6);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Source Sans 3", sans-serif;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+h1 {
+  font-size: 2.2rem;
+  border-bottom: 2px solid var(--rule);
+  padding-bottom: 0.4rem;
+}
+
+h2 {
+  margin-top: 2.2rem;
+  border-left: 4px solid var(--accent);
+  padding-left: 0.6rem;
+}
+
+h3 {
+  margin-top: 1.6rem;
+  color: var(--accent);
+}
+
+p {
+  color: var(--ink);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(43, 111, 106, 0.3);
+}
+
+a:hover {
+  color: var(--accent-2);
+  border-bottom-color: rgba(165, 106, 47, 0.5);
+}
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 0.9rem 1.2rem;
+  background: rgba(43, 111, 106, 0.08);
+  border-left: 4px solid var(--accent);
+  color: var(--muted);
+}
+
+code,
+pre {
+  font-family: "IBM Plex Mono", monospace;
+  background: var(--code-bg);
+}
+
+pre {
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2rem 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+  font-size: 0.92rem;
+}
+
+.quarto-other-formats {
+  display: none !important;
+}
+
+thead th {
+  background: var(--table-head);
+  font-family: "Source Sans 3", sans-serif;
+  text-align: left;
+  padding: 0.6rem 0.7rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+tbody td {
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid rgba(226, 217, 205, 0.6);
+}
+
+tbody tr:nth-child(even) {
+  background: var(--table-row);
+}
+
+.figure-caption,
+.table-caption {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  main.content {
+    margin: 1.5rem 1rem 2.5rem 1rem;
+    padding: 1.6rem;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+}
