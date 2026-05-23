@@ -11,6 +11,7 @@ venv/
 .env
 .env.*
 *.tex
+*.bat
 
 # Build/test tooling caches
 .pytest_cache/
