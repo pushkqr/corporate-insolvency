@@ -298,7 +298,7 @@
             <h3 class="anchored" data-anchor-id="environment-setup">
               Environment Setup
             </h3>
-            <div id="2d049404" class="cell" data-execution_count="2">
+            <div id="2d049404" class="cell" data-execution_count="1">
               <div class="cell-output cell-output-stdout">
                 <pre><code>Environment initialized.</code></pre>
               </div>
@@ -309,37 +309,37 @@
           <h2 class="anchored" data-anchor-id="data-cleaning-imputation">
             Data Cleaning &amp; Imputation
           </h2>
-          <div id="8ac1799a" class="cell" data-execution_count="10">
+          <div id="8ac1799a" class="cell" data-execution_count="2">
             <div class="cell-output cell-output-stdout">
-              <pre><code>Raw shape = (1186, 21)
+              <pre><code>Raw shape = (1379, 21)
 &lt;class 'pandas.DataFrame'&gt;
-RangeIndex: 1186 entries, 0 to 1185
+RangeIndex: 1379 entries, 0 to 1378
 Data columns (total 21 columns):
  #   Column                Non-Null Count  Dtype
 ---  ------                --------------  -----
- 0   ticker                1186 non-null   str  
- 1   company_name          1186 non-null   str  
- 2   sector                706 non-null    str  
- 3   industry              706 non-null    str  
- 4   business_summary      707 non-null    str  
- 5   target                1186 non-null   str  
- 6   market_cap            719 non-null    str  
- 7   total_debt            877 non-null    str  
- 8   intangible_assets     837 non-null    str  
- 9   cash_and_equivalents  912 non-null    str  
- 10  current_liabilities   893 non-null    str  
- 11  operating_cash_flow   839 non-null    str  
- 12  ebitda                876 non-null    str  
- 13  interest_expense      892 non-null    str  
- 14  net_income            905 non-null    str  
- 15  total_assets          896 non-null    str  
- 16  fiscal_year           1007 non-null   str  
- 17  currency              1186 non-null   str  
- 18  source_url            1140 non-null   str  
- 19  extraction_status     1186 non-null   str  
- 20  extraction_error      270 non-null    str  
+ 0   ticker                1379 non-null   str  
+ 1   company_name          1379 non-null   str  
+ 2   sector                872 non-null    str  
+ 3   industry              872 non-null    str  
+ 4   business_summary      874 non-null    str  
+ 5   target                1379 non-null   str  
+ 6   market_cap            887 non-null    str  
+ 7   total_debt            1064 non-null   str  
+ 8   intangible_assets     1014 non-null   str  
+ 9   cash_and_equivalents  1100 non-null   str  
+ 10  current_liabilities   1080 non-null   str  
+ 11  operating_cash_flow   1020 non-null   str  
+ 12  ebitda                1064 non-null   str  
+ 13  interest_expense      1080 non-null   str  
+ 14  net_income            1093 non-null   str  
+ 15  total_assets          1083 non-null   str  
+ 16  fiscal_year           1199 non-null   str  
+ 17  currency              1379 non-null   str  
+ 18  source_url            1332 non-null   str  
+ 19  extraction_status     1379 non-null   str  
+ 20  extraction_error      275 non-null    str  
 dtypes: str(21)
-memory usage: 194.7 KB</code></pre>
+memory usage: 226.4 KB</code></pre>
             </div>
             <div class="cell-output cell-output-display">
               <pre><code>None</code></pre>
@@ -347,11 +347,11 @@ memory usage: 194.7 KB</code></pre>
             <div class="cell-output cell-output-stdout">
               <pre><code>Target distribution
 target
-0        0.64
-1        0.36
+0        0.66
+1        0.34
 target   0.00
 Name: proportion, dtype: float64
-Duplicate-ticker rows = 303</code></pre>
+Duplicate-ticker rows = 341</code></pre>
             </div>
             <div class="cell-output cell-output-display">
               <div>
@@ -371,31 +371,31 @@ Duplicate-ticker rows = 303</code></pre>
                   </thead>
                   <tbody>
                     <tr class="odd">
-                      <th data-quarto-table-cell-role="th">1076</th>
-                      <td>ABGSHIP</td>
-                      <td>ABG Shipyard</td>
-                      <td>pdf_llm_consolidated</td>
-                    </tr>
-                    <tr class="even">
-                      <th data-quarto-table-cell-role="th">585</th>
+                      <th data-quarto-table-cell-role="th">679</th>
                       <td>ABGSHIP</td>
                       <td>ABG Shipyard</td>
                       <td>Success_Manual</td>
                     </tr>
-                    <tr class="odd">
-                      <th data-quarto-table-cell-role="th">899</th>
-                      <td>AGRITECH</td>
-                      <td>Agri-Tech (India) Limited</td>
-                      <td>pdf_llm_standalone</td>
-                    </tr>
                     <tr class="even">
-                      <th data-quarto-table-cell-role="th">669</th>
+                      <th data-quarto-table-cell-role="th">1259</th>
+                      <td>ABGSHIP</td>
+                      <td>ABG Shipyard</td>
+                      <td>pdf_llm_consolidated</td>
+                    </tr>
+                    <tr class="odd">
+                      <th data-quarto-table-cell-role="th">780</th>
                       <td>AGRITECH</td>
                       <td>AGRI-TECH (INDIA) LIMITED</td>
                       <td>yfinance</td>
                     </tr>
+                    <tr class="even">
+                      <th data-quarto-table-cell-role="th">1068</th>
+                      <td>AGRITECH</td>
+                      <td>Agri-Tech (India) Limited</td>
+                      <td>pdf_llm_standalone</td>
+                    </tr>
                     <tr class="odd">
-                      <th data-quarto-table-cell-role="th">342</th>
+                      <th data-quarto-table-cell-role="th">398</th>
                       <td>AKSHOPTFBR</td>
                       <td>AKSH OPTIFIBRE LIMITED</td>
                       <td>yfinance</td>
@@ -422,24 +422,24 @@ Duplicate-ticker rows = 303</code></pre>
             Resolve duplicate tickers using data completeness - Handle missing
             values in financial columns - Validate dataset integrity before EDA
           </p>
-          <div id="08919a76" class="cell" data-execution_count="11">
+          <div id="08919a76" class="cell" data-execution_count="3">
             <div class="cell-output cell-output-stdout">
-              <pre><code>Cleaned shape = (684, 21)
-Rows removed (metadata_only) = 179
-Rows removed (&gt;50% missing financial) = 102
+              <pre><code>Cleaned shape = (854, 21)
+Rows removed (metadata_only) = 180
+Rows removed (&gt;50% missing financial) = 106
 Rows removed (strict financial completeness) = 100
-Total rows removed = 502</code></pre>
+Total rows removed = 525</code></pre>
             </div>
           </div>
-          <div id="69dafe40" class="cell" data-execution_count="12">
+          <div id="69dafe40" class="cell" data-execution_count="4">
             <div class="cell-output cell-output-stdout">
               <pre><code>Cleaning summary
                      metric  before  after
-0                      rows    1186    684
+0                      rows    1379    854
 1                   columns      21     21
-2     duplicate_ticker_rows     303      0
-3  financial_missing_values    2747      0
-4            unique_tickers    1011    684
+2     duplicate_ticker_rows     341      0
+3  financial_missing_values    2813      0
+4            unique_tickers    1181    854
 Saved cleaned file = insolvency_clean.csv</code></pre>
             </div>
           </div>
@@ -456,20 +456,20 @@ Saved cleaned file = insolvency_clean.csv</code></pre>
               Quick sanity checks after cleaning: shape, class balance,
               extraction status mix, and basic numeric summary.
             </p>
-            <div id="d929d558" class="cell" data-execution_count="13">
+            <div id="d929d558" class="cell" data-execution_count="5">
               <div class="cell-output cell-output-stdout">
-                <pre><code>Cleaned shape = (684, 21)
+                <pre><code>Cleaned shape = (854, 21)
 Target counts
 target
-0    532
-1    152
+0    685
+1    169
 Name: count, dtype: int64
 Extraction status counts
 extraction_status
-YFINANCE                569
-SUCCESS_MANUAL           68
-PDF_LLM_CONSOLIDATED     34
-PDF_LLM_STANDALONE       13
+YFINANCE                727
+SUCCESS_MANUAL           73
+PDF_LLM_CONSOLIDATED     38
+PDF_LLM_STANDALONE       16
 Name: count, dtype: Int64</code></pre>
               </div>
               <div class="cell-output cell-output-display">
@@ -494,111 +494,111 @@ Name: count, dtype: Int64</code></pre>
                     <tbody>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">total_debt</th>
-                        <td>684.00</td>
-                        <td>69670398825.14</td>
-                        <td>329780079910.77</td>
+                        <td>854.00</td>
+                        <td>65606100546.91</td>
+                        <td>304500410964.70</td>
                         <td>0.00</td>
-                        <td>888152250.00</td>
-                        <td>3808264500.00</td>
-                        <td>18982890250.00</td>
+                        <td>869550000.00</td>
+                        <td>3853464000.00</td>
+                        <td>19044284500.00</td>
                         <td>4121326900000.00</td>
                       </tr>
                       <tr class="even">
                         <th data-quarto-table-cell-role="th">
                           intangible_assets
                         </th>
-                        <td>684.00</td>
-                        <td>18584902614.97</td>
-                        <td>178416978454.79</td>
+                        <td>854.00</td>
+                        <td>18000708772.00</td>
+                        <td>161736147532.04</td>
                         <td>0.00</td>
-                        <td>5676500.00</td>
-                        <td>171550000.00</td>
-                        <td>2712525000.00</td>
+                        <td>5510000.00</td>
+                        <td>164464000.00</td>
+                        <td>2648415500.00</td>
                         <td>4089390000000.00</td>
                       </tr>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">
                           cash_and_equivalents
                         </th>
-                        <td>684.00</td>
-                        <td>20133270466.74</td>
-                        <td>105466467560.97</td>
+                        <td>854.00</td>
+                        <td>21151761493.60</td>
+                        <td>101189188139.89</td>
                         <td>0.00</td>
-                        <td>314445523.00</td>
-                        <td>2254098000.00</td>
-                        <td>10500967750.00</td>
+                        <td>313536569.00</td>
+                        <td>2196293500.00</td>
+                        <td>10606850000.00</td>
                         <td>2387920000000.00</td>
                       </tr>
                       <tr class="even">
                         <th data-quarto-table-cell-role="th">
                           current_liabilities
                         </th>
-                        <td>684.00</td>
-                        <td>59932932757.05</td>
-                        <td>246904082737.91</td>
+                        <td>854.00</td>
+                        <td>60749289173.63</td>
+                        <td>237041065594.47</td>
                         <td>0.00</td>
-                        <td>2917106000.00</td>
-                        <td>9723232500.00</td>
-                        <td>33626499853.75</td>
+                        <td>2865739250.00</td>
+                        <td>9578505000.00</td>
+                        <td>34454649853.75</td>
                         <td>4537370000000.00</td>
                       </tr>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">
                           operating_cash_flow
                         </th>
-                        <td>684.00</td>
-                        <td>14916712739.60</td>
-                        <td>97903386620.59</td>
+                        <td>854.00</td>
+                        <td>15577501904.18</td>
+                        <td>91863190397.21</td>
                         <td>-621132500000.00</td>
-                        <td>137923500.00</td>
-                        <td>1610872500.00</td>
-                        <td>7373125000.00</td>
+                        <td>180703250.00</td>
+                        <td>1669515000.00</td>
+                        <td>7189200000.00</td>
                         <td>1787030000000.00</td>
                       </tr>
                       <tr class="even">
                         <th data-quarto-table-cell-role="th">ebitda</th>
-                        <td>684.00</td>
-                        <td>23771710786.60</td>
-                        <td>102521818922.78</td>
+                        <td>854.00</td>
+                        <td>24438689805.46</td>
+                        <td>99921520542.17</td>
                         <td>-68000000000.00</td>
-                        <td>578949500.00</td>
-                        <td>3293200000.00</td>
-                        <td>12356050000.00</td>
+                        <td>616244750.00</td>
+                        <td>3292572500.00</td>
+                        <td>11894520000.00</td>
                         <td>1812740000000.00</td>
                       </tr>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">
                           interest_expense
                         </th>
-                        <td>684.00</td>
-                        <td>4471147827.87</td>
-                        <td>20309009864.06</td>
+                        <td>854.00</td>
+                        <td>4241175584.47</td>
+                        <td>18809440133.10</td>
                         <td>-236095000.00</td>
-                        <td>74020000.00</td>
-                        <td>316986500.00</td>
-                        <td>1474275750.00</td>
+                        <td>73940000.00</td>
+                        <td>316531000.00</td>
+                        <td>1471810750.00</td>
                         <td>243143000000.00</td>
                       </tr>
                       <tr class="even">
                         <th data-quarto-table-cell-role="th">net_income</th>
-                        <td>684.00</td>
-                        <td>9423376787.91</td>
-                        <td>42736745236.56</td>
+                        <td>854.00</td>
+                        <td>10258675893.97</td>
+                        <td>45237888404.91</td>
                         <td>-273834000000.00</td>
-                        <td>72092750.00</td>
-                        <td>1349013000.00</td>
-                        <td>6103125000.00</td>
+                        <td>89897750.00</td>
+                        <td>1379857000.00</td>
+                        <td>5969412500.00</td>
                         <td>696480000000.00</td>
                       </tr>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">total_assets</th>
-                        <td>684.00</td>
-                        <td>209672588227.42</td>
-                        <td>980570196457.55</td>
+                        <td>854.00</td>
+                        <td>205914065807.74</td>
+                        <td>906402554577.49</td>
                         <td>20340000.00</td>
-                        <td>10455940000.00</td>
-                        <td>31272662000.00</td>
-                        <td>101433725000.00</td>
+                        <td>10331559250.00</td>
+                        <td>30480700000.00</td>
+                        <td>101601175000.00</td>
                         <td>19501210000000.00</td>
                       </tr>
                     </tbody>
@@ -618,7 +618,7 @@ Name: count, dtype: Int64</code></pre>
                 </div>
               </div>
               <div class="cell-output cell-output-stdout">
-                <pre><code>Class imbalance = 77.8% healthy vs 22.2% bankrupt</code></pre>
+                <pre><code>Class imbalance = 80.2% healthy vs 19.8% bankrupt</code></pre>
               </div>
             </div>
             <p>
@@ -636,7 +636,7 @@ Name: count, dtype: Int64</code></pre>
               Assess any residual missing values and compare missingness between
               bankrupt and healthy cohorts.
             </p>
-            <div id="06e57b7d" class="cell" data-execution_count="14">
+            <div id="06e57b7d" class="cell" data-execution_count="6">
               <div class="cell-output cell-output-stdout">
                 <pre><code>Top columns by missing percentage</code></pre>
               </div>
@@ -657,22 +657,22 @@ Name: count, dtype: Int64</code></pre>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">0</th>
                         <td>sector</td>
-                        <td>8.48</td>
+                        <td>7.85</td>
                       </tr>
                       <tr class="even">
                         <th data-quarto-table-cell-role="th">1</th>
                         <td>industry</td>
-                        <td>8.48</td>
+                        <td>7.85</td>
                       </tr>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">2</th>
                         <td>business_summary</td>
-                        <td>8.33</td>
+                        <td>7.61</td>
                       </tr>
                       <tr class="even">
                         <th data-quarto-table-cell-role="th">3</th>
                         <td>market_cap</td>
-                        <td>6.87</td>
+                        <td>6.32</td>
                       </tr>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">4</th>
@@ -738,7 +738,7 @@ Name: count, dtype: Int64</code></pre>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">market_cap</th>
                         <td>0.00</td>
-                        <td>30.92</td>
+                        <td>31.95</td>
                       </tr>
                       <tr class="even">
                         <th data-quarto-table-cell-role="th">total_debt</th>
@@ -828,7 +828,7 @@ Name: count, dtype: Int64</code></pre>
               Build ratio features and compare their distributions by target to
               inspect insolvency signatures.
             </p>
-            <div id="9d8e5470" class="cell" data-execution_count="15">
+            <div id="9d8e5470" class="cell" data-execution_count="7">
               <div class="cell-output cell-output-stdout">
                 <pre><code>Ratio medians by target</code></pre>
               </div>
@@ -855,41 +855,41 @@ Name: count, dtype: Int64</code></pre>
                       </tr>
                       <tr class="even">
                         <th data-quarto-table-cell-role="th">debt_to_assets</th>
-                        <td>0.12</td>
-                        <td>0.46</td>
+                        <td>0.13</td>
+                        <td>0.47</td>
                       </tr>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">
                           cash_to_current_liabilities
                         </th>
-                        <td>0.38</td>
+                        <td>0.37</td>
                         <td>0.02</td>
                       </tr>
                       <tr class="even">
                         <th data-quarto-table-cell-role="th">ocf_to_ebitda</th>
-                        <td>0.62</td>
-                        <td>0.29</td>
+                        <td>0.63</td>
+                        <td>0.28</td>
                       </tr>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">
                           interest_coverage_proxy
                         </th>
-                        <td>12.03</td>
-                        <td>0.88</td>
+                        <td>11.66</td>
+                        <td>0.83</td>
                       </tr>
                       <tr class="even">
                         <th data-quarto-table-cell-role="th">
                           ocf_ni_divergence
                         </th>
-                        <td>274584000.00</td>
-                        <td>486398471.50</td>
+                        <td>326100000.00</td>
+                        <td>566881688.00</td>
                       </tr>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">
                           tangible_asset_coverage
                         </th>
-                        <td>7.02</td>
-                        <td>1.97</td>
+                        <td>6.99</td>
+                        <td>1.95</td>
                       </tr>
                     </tbody>
                   </table>
@@ -917,43 +917,43 @@ Name: count, dtype: Int64</code></pre>
                         <th data-quarto-table-cell-role="th">0</th>
                         <td>intangibles_to_assets</td>
                         <td>0.00</td>
-                        <td>0.58</td>
+                        <td>0.54</td>
                       </tr>
                       <tr class="even">
                         <th data-quarto-table-cell-role="th">1</th>
                         <td>debt_to_assets</td>
                         <td>0.00</td>
-                        <td>3.16</td>
+                        <td>4.00</td>
                       </tr>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">2</th>
                         <td>cash_to_current_liabilities</td>
                         <td>0.00</td>
-                        <td>7.52</td>
+                        <td>7.47</td>
                       </tr>
                       <tr class="even">
                         <th data-quarto-table-cell-role="th">3</th>
                         <td>ocf_to_ebitda</td>
-                        <td>-7.02</td>
-                        <td>5.23</td>
+                        <td>-5.93</td>
+                        <td>5.33</td>
                       </tr>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">4</th>
                         <td>interest_coverage_proxy</td>
-                        <td>-26.85</td>
-                        <td>2422.80</td>
+                        <td>-40.33</td>
+                        <td>1694.36</td>
                       </tr>
                       <tr class="even">
                         <th data-quarto-table-cell-role="th">5</th>
                         <td>ocf_ni_divergence</td>
-                        <td>-75816857000.00</td>
-                        <td>202630238000.00</td>
+                        <td>-61445398000.00</td>
+                        <td>186622610000.00</td>
                       </tr>
                       <tr class="odd">
                         <th data-quarto-table-cell-role="th">6</th>
                         <td>tangible_asset_coverage</td>
-                        <td>0.31</td>
-                        <td>3289.65</td>
+                        <td>0.25</td>
+                        <td>3907.64</td>
                       </tr>
                     </tbody>
                   </table>
@@ -1030,7 +1030,7 @@ Name: count, dtype: Int64</code></pre>
               Use a pair plot on selected percentile-scaled forensic ratios to
               inspect class separation patterns and feature interactions.
             </p>
-            <div id="c62ec00a" class="cell" data-execution_count="16">
+            <div id="c62ec00a" class="cell" data-execution_count="8">
               <div class="cell-output cell-output-display">
                 <div>
                   <figure class="figure">
