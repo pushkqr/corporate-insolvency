@@ -16,6 +16,7 @@
 
 body {
   font-family: "Spectral", serif;
+  font-size: 0.97rem;
   background-color: var(--bg);
   background-image:
     radial-gradient(
@@ -34,8 +35,9 @@ body {
 }
 
 main.content {
-  max-width: 920px;
-  margin: 2.5rem auto 3.5rem auto;
+  max-width: 1180px;
+  width: min(92vw, 1180px);
+  margin: 2rem auto 3rem auto;
   padding: 2.5rem 2.5rem 3rem 2.5rem;
   background: var(--paper);
   border-radius: 18px;
@@ -149,8 +151,9 @@ tbody tr:nth-child(even) {
 
 @media (max-width: 900px) {
   main.content {
-    margin: 1.5rem 1rem 2.5rem 1rem;
-    padding: 1.6rem;
+    width: auto;
+    margin: 1.25rem 0.85rem 2.25rem 0.85rem;
+    padding: 1.5rem;
   }
 
   h1 {
