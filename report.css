@@ -16,7 +16,7 @@
 
 body {
   font-family: "Spectral", serif;
-  font-size: 0.97rem;
+  font-size: 0.92rem;
   background-color: var(--bg);
   background-image:
     radial-gradient(
@@ -35,10 +35,10 @@ body {
 }
 
 main.content {
-  max-width: 1180px;
-  width: min(92vw, 1180px);
-  margin: 2rem auto 3rem auto;
-  padding: 2.5rem 2.5rem 3rem 2.5rem;
+  max-width: 1240px;
+  width: min(96vw, 1240px);
+  margin: 1.8rem auto 2.6rem auto;
+  padding: 2.1rem 2.1rem 2.6rem 2.1rem;
   background: var(--paper);
   border-radius: 18px;
   box-shadow: 0 24px 60px var(--shadow);
@@ -152,8 +152,8 @@ tbody tr:nth-child(even) {
 @media (max-width: 900px) {
   main.content {
     width: auto;
-    margin: 1.25rem 0.85rem 2.25rem 0.85rem;
-    padding: 1.5rem;
+    margin: 1.1rem 0.75rem 2rem 0.75rem;
+    padding: 1.35rem;
   }
 
   h1 {
